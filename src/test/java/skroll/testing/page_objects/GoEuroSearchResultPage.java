@@ -40,7 +40,6 @@ public class GoEuroSearchResultPage extends WebPage{
 	WebElement busTab;
 	
 	
-	
 	public GoEuroSearchResultPage(WebDriver driver) {
 		super(driver);
 	}
@@ -52,6 +51,15 @@ public class GoEuroSearchResultPage extends WebPage{
 		waitUntilVisibility(trainResults);
         return are_prizes_sorted(trainResultCashValues);
 	}
+	
+	public boolean is_bus_prizes_sorted() {
+		if (!isTabActive(busTab)){
+			busTab.click();
+		}
+		waitUntilVisibility(trainResults);
+		return are_prizes_sorted(trainResultCashValues);
+	}
+	
 	private void waitUntilVisibility(By selector) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
 	}
