@@ -49,9 +49,11 @@ public class GoEuroSearchResultPage extends WebPage{
 		if (!isTabActive(trainTab)){
 			trainTab.click();
 		}
-        wait.until(ExpectedConditions.visibilityOfElementLocated(trainResults));
-        List<WebElement> result = trainResultCashValues;
-        return are_prizes_sorted(result);
+		waitUntilVisibility(trainResults);
+        return are_prizes_sorted(trainResultCashValues);
+	}
+	private void waitUntilVisibility(By selector) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
 	}
 	
 	private boolean isTabActive(WebElement tab){
