@@ -18,7 +18,7 @@ import skroll.testing.page_objects.GoEuroHomePage;
 import skroll.testing.page_objects.GoEuroSearchResultPage;
 
 
-public class GoEuroSearch {
+public class GoEuroSearchTest {
     static WebDriver driver;
     static Wait<WebDriver> wait;
     
