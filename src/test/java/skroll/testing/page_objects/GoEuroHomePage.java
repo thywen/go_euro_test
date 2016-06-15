@@ -31,7 +31,7 @@ public class GoEuroHomePage extends WebPage{
 		submitButton.submit();
 	}
 	
-	public void searchForConnections(String fromCity, String toCity) {
+	public GoEuroSearchResultPage searchForConnections(String fromCity, String toCity) {
 		addFromCity(fromCity);
 		shortWait();
 		toField.click();
@@ -39,5 +39,6 @@ public class GoEuroHomePage extends WebPage{
 		shortWait();
 		fromField.click();
 		submitSearch();
+		return (GoEuroSearchResultPage) andReturn(GoEuroSearchResultPage.class, driver);
 	}
 }

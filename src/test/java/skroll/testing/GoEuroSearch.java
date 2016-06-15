@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import skroll.testing.page_objects.GoEuroHomePage;
+import skroll.testing.page_objects.GoEuroSearchResultPage;
 
 
 public class GoEuroSearch {
@@ -41,7 +42,7 @@ public class GoEuroSearch {
 		 
 		 GoEuroHomePage homePage = PageFactory.initElements(driver, GoEuroHomePage.class);
 
-		 	homePage.searchForConnections(fromCity, toCity);
+		 GoEuroSearchResultPage resultPage = homePage.searchForConnections(fromCity, toCity);
 	        // Wait for search to complete
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#results-train div.price-cell-content span.price-no span")));
 	        
