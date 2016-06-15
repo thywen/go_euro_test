@@ -52,6 +52,14 @@ public class GoEuroSearchResultPage extends WebPage{
         return are_prizes_sorted(trainResultCashValues);
 	}
 	
+	public boolean is_flight_prizes_sorted() {
+		if (!isTabActive(flightTab)){
+			busTab.click();
+		}
+		waitUntilVisibility(flightResults);
+		return are_prizes_sorted(flightResultCashValues);
+	}
+	
 	public boolean is_bus_prizes_sorted() {
 		if (!isTabActive(busTab)){
 			busTab.click();

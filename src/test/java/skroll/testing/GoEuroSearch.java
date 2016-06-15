@@ -45,6 +45,12 @@ public class GoEuroSearch {
 	 }
 	 
 	 @Test
+	 public void sorting_of_flight_prices(){
+		 GoEuroSearchResultPage resultPage = homePage.searchForConnections(fromCity, toCity);
+	     Assert.assertTrue(resultPage.is_flight_prizes_sorted());
+	 }
+	 
+	 @Test
 	 public void sorting_of_bus_prices(){
 		 GoEuroSearchResultPage resultPage = homePage.searchForConnections(fromCity, toCity);
 	     Assert.assertTrue(resultPage.is_bus_prizes_sorted());
