@@ -21,17 +21,17 @@ public class GoEuroSearchResultPage extends WebPage{
 	@FindBy(id = "tab_train")
 	WebElement trainTab;
 	
-	private final String planeResultSelectorString = "#results-flight span.price-no span";
-	By planeResults = By.cssSelector(trainResultSelectorString);
+	private final String flightResultSelectorString = "#results-flight span.price-no span";
+	By flightResults = By.cssSelector(flightResultSelectorString);
 	
-	@FindBy(css = planeResultSelectorString)
-	List<WebElement> planeResultCashValues;
+	@FindBy(css = flightResultSelectorString)
+	List<WebElement> flightResultCashValues;
 	
 	@FindBy(id = "tab_flight")
-	WebElement planeTab;
+	WebElement flightTab;
 	
-	private final String busResultSelectorString = "#results-flight span.price-no span";
-	By busResults = By.cssSelector(trainResultSelectorString);
+	private final String busResultSelectorString = "#results-bus span.price-no span";
+	By busResults = By.cssSelector(busResultSelectorString);
 	
 	@FindBy(css = busResultSelectorString)
 	List<WebElement> busResultCashValues;
@@ -56,8 +56,8 @@ public class GoEuroSearchResultPage extends WebPage{
 		if (!isTabActive(busTab)){
 			busTab.click();
 		}
-		waitUntilVisibility(trainResults);
-		return are_prizes_sorted(trainResultCashValues);
+		waitUntilVisibility(busResults);
+		return are_prizes_sorted(busResultCashValues);
 	}
 	
 	private void waitUntilVisibility(By selector) {
