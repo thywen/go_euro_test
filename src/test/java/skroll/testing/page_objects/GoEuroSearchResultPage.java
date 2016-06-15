@@ -49,7 +49,7 @@ public class GoEuroSearchResultPage extends WebPage{
 			trainTab.click();
 		}
 		waitUntilVisibility(trainResults);
-        return are_prizes_sorted(trainResultCashValues);
+		return isPriceSorted(createFloatList(trainResultCashValues));
 	}
 	
 	public boolean is_flight_prizes_sorted() {
@@ -57,7 +57,7 @@ public class GoEuroSearchResultPage extends WebPage{
 			flightTab.click();
 		}
 		waitUntilVisibility(flightResults);
-		return are_prizes_sorted(flightResultCashValues);
+		return isPriceSorted(createFloatList(flightResultCashValues));
 	}
 	
 	public boolean is_bus_prizes_sorted() {
@@ -65,7 +65,7 @@ public class GoEuroSearchResultPage extends WebPage{
 			busTab.click();
 		}
 		waitUntilVisibility(busResults);
-		return are_prizes_sorted(busResultCashValues);
+		return isPriceSorted(createFloatList(busResultCashValues));
 	}
 	
 	private void waitUntilVisibility(By selector) {
@@ -76,22 +76,25 @@ public class GoEuroSearchResultPage extends WebPage{
 		return tab.getAttribute("class").contains("active");
 	}
 	
-	private boolean are_prizes_sorted(List<WebElement> result){
+	private boolean isPriceSorted(List<Float> floatList){
+        for (int i = 0; i < floatList.size()-1; i++) {
+            Float floatAtIndex = floatList.get(i);
+            Float floatAtIndexPlusOne = floatList.get(i+1);
+            if (floatAtIndex > floatAtIndexPlusOne) {
+            	return false;
+            }
+        }
+        return true;
+	}
+	
+	private List<Float> createFloatList(List<WebElement> result){
 		List<Float> floatList = new ArrayList<Float>();
-	    	for (int i = 0; i < result.size(); i++) {
-	            WebElement element = result.get(i);
-	            if (i%4 == 1) {
-	            	float a = Float.parseFloat(element.getText() + '.' + result.get(i+2).getText());
-	            	floatList.add(a);
-	            }
-	        }
-	        for (int i = 0; i < floatList.size()-1; i++) {
-	            Float floatAtIndex = floatList.get(i);
-	            Float floatAtIndexPlusOne = floatList.get(i+1);
-	            if (floatAtIndex > floatAtIndexPlusOne) {
-	            	return false;
-	            }
-	        }
-	        return true;
+    	for (int i = 0; i < result.size(); i++) {
+            WebElement element = result.get(i);
+            if (i%4 == 1) {
+            	floatList.add(Float.parseFloat(element.getText() + '.' + result.get(i+2).getText()));
+            }
+        }
+    	return floatList;
 	}
 }
