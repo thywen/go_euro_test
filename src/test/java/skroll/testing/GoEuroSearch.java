@@ -2,22 +2,15 @@ package skroll.testing;
 
 
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,6 +22,9 @@ public class GoEuroSearch {
     static WebDriver driver;
     static Wait<WebDriver> wait;
     
+    String fromCity = "Berlin";
+    String toCity = "Prague";
+    
 	 @Before
      public void openBrowser(){
          driver = new FirefoxDriver();
@@ -36,9 +32,7 @@ public class GoEuroSearch {
 		} 
 	 
 	 @Test
-	 public void sorting_of_prices(){
-		 String fromCity = "Berlin";
-		 String toCity = "Prague";
+	 public void sorting_of_train_prices(){
 		 wait = new WebDriverWait(driver, 30);
 		 driver.get("http://www.goeuro.com/");
 		 
