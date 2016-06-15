@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -27,8 +29,8 @@ public class GoEuroSearch {
     static WebDriver driver;
     static Wait<WebDriver> wait;
     
-	 @BeforeClass
-     public static void openBrowser(){
+	 @Before
+     public void openBrowser(){
          driver = new FirefoxDriver();
          driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		} 
@@ -46,8 +48,8 @@ public class GoEuroSearch {
 	     Assert.assertTrue(resultPage.is_train_prizes_sorted());
 	 }
 	 
-	 @AfterClass
-	 public static void closeBrowser(){
+	 @After
+	 public void closeBrowser(){
 		 driver.quit();
 	 }
 }
