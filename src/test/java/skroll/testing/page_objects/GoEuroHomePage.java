@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GoEuroHomePage {
-	WebDriver driver;
+public class GoEuroHomePage extends WebPage{
+
 	
 	@FindBy(id = "from_filter")
     WebElement fromField;
@@ -16,7 +16,7 @@ public class GoEuroHomePage {
 	
 	
 	public GoEuroHomePage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 	}
 	
 	public void addFromCity(String city){
@@ -40,14 +40,4 @@ public class GoEuroHomePage {
 		fromField.click();
 		submitSearch();
 	}
-	
-	private void shortWait() {
-        try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-
 }
