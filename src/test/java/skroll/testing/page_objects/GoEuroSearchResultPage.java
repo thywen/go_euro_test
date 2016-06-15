@@ -47,14 +47,21 @@ public class GoEuroSearchResultPage extends WebPage{
 	}
 	
 	public boolean is_train_prizes_sorted() {
+		if (!isTabActive(trainTab)){
+			trainTab.click();
+		}
         wait.until(ExpectedConditions.visibilityOfElementLocated(trainResults));
         List<WebElement> result = trainResultCashValues;
         return are_prizes_sorted(result);
 	}
 	
-	 private boolean are_prizes_sorted(List<WebElement> result){
-		 List<Float> floatList = new ArrayList<Float>();
-	        for (int i = 0; i < result.size(); i++) {
+	private boolean isTabActive(WebElement tab){
+		return tab.getAttribute("class").contains("active");
+	}
+	
+	private boolean are_prizes_sorted(List<WebElement> result){
+		List<Float> floatList = new ArrayList<Float>();
+	    	for (int i = 0; i < result.size(); i++) {
 	            WebElement element = result.get(i);
 	            if (i%4 == 1) {
 	            	float a = Float.parseFloat(element.getText() + '.' + result.get(i+2).getText());
@@ -69,5 +76,5 @@ public class GoEuroSearchResultPage extends WebPage{
 	            }
 	        }
 	        return true;
-	 }
+	}
 }
