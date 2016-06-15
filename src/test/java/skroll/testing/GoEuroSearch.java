@@ -14,9 +14,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import skroll.testing.page_objects.GoEuroHomePage;
 
 
 public class GoEuroSearch {
@@ -31,27 +34,14 @@ public class GoEuroSearch {
 	 
 	 @Test
 	 public void sorting_of_prices(){
+		 String fromCity = "Berlin";
+		 String toCity = "Prague";
 		 wait = new WebDriverWait(driver, 30);
 		 driver.get("http://www.goeuro.com/");
-	       //type search query
-	    	driver.findElement(By.id("from_filter")).sendKeys("Berlin");
-	        try {
-	 			Thread.sleep(1000);
-	 		} catch (InterruptedException e) {
-	 			e.printStackTrace();
-	 		}
-	        driver.findElement(By.id("to_filter")).click();
-	        
-	        // click search
-	        driver.findElement(By.id("to_filter")).sendKeys("Prague");
-	        try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-	        driver.findElement(By.id("from_filter")).click();
-	        driver.findElement(By.id("search-form__submit-btn")).submit();
-	        
+		 
+		 GoEuroHomePage homePage = PageFactory.initElements(driver, GoEuroHomePage.class);
+
+		 	homePage.searchForConnections(fromCity, toCity);
 	        // Wait for search to complete
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#results-train div.price-cell-content span.price-no span")));
 	        
