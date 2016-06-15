@@ -13,21 +13,32 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class GoEuroSearchResultPage extends WebPage{
 	WebDriver driver;
 
-	
-	@FindBy(css = "#results-train div.price-cell-content span.price-no span")
-	List<WebElement> trainResultCashValues;
-	
-	@FindBy(id = "train_tab")
-	WebElement train_tab;
-	
-	private final String trainResultSelectorString = "#results-train div.price-cell-content span.price-no span";
+	private final String trainResultSelectorString = "#results-train span.price-no span";
 	By trainResults = By.cssSelector(trainResultSelectorString);
 	
 	@FindBy(css = trainResultSelectorString)
+	List<WebElement> trainResultCashValues;
+	
+	@FindBy(id = "tab_train")
+	WebElement trainTab;
+	
+	private final String planeResultSelectorString = "#results-flight span.price-no span";
+	By planeResults = By.cssSelector(trainResultSelectorString);
+	
+	@FindBy(css = planeResultSelectorString)
 	List<WebElement> planeResultCashValues;
 	
-	@FindBy(id = "train_tab")
-	WebElement plane_tab;
+	@FindBy(id = "tab_flight")
+	WebElement planeTab;
+	
+	private final String busResultSelectorString = "#results-flight span.price-no span";
+	By busResults = By.cssSelector(trainResultSelectorString);
+	
+	@FindBy(css = busResultSelectorString)
+	List<WebElement> busResultCashValues;
+	
+	@FindBy(id = "tab_bus")
+	WebElement busTab;
 	
 	
 	
