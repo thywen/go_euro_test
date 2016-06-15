@@ -25,19 +25,21 @@ public class GoEuroSearch {
     String fromCity = "Berlin";
     String toCity = "Prague";
     
+    static GoEuroHomePage homePage;
+    
 	 @Before
      public void openBrowser(){
          driver = new FirefoxDriver();
          driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		 wait = new WebDriverWait(driver, 30);
+		 driver.get("http://www.goeuro.com/");
+		 homePage = PageFactory.initElements(driver, GoEuroHomePage.class);
 		} 
+	 
+
 	 
 	 @Test
 	 public void sorting_of_train_prices(){
-		 wait = new WebDriverWait(driver, 30);
-		 driver.get("http://www.goeuro.com/");
-		 
-		 GoEuroHomePage homePage = PageFactory.initElements(driver, GoEuroHomePage.class);
-
 		 GoEuroSearchResultPage resultPage = homePage.searchForConnections(fromCity, toCity);
 	     Assert.assertTrue(resultPage.is_train_prizes_sorted());
 	 }
