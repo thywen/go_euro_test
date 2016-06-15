@@ -3,22 +3,32 @@ package skroll.testing.page_objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoEuroSearchResultPage extends WebPage{
 	WebDriver driver;
+
 	
 	@FindBy(css = "#results-train div.price-cell-content span.price-no span")
-	WebElement trainResultCashValues;
+	List<WebElement> trainResultCashValues;
 	
 	
 	public GoEuroSearchResultPage(WebDriver driver) {
 		super(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 	}
+	
+	public boolean is_train_prizes_sorted() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#results-train div.price-cell-content span.price-no span")));
+        List<WebElement> result = trainResultCashValues;
+        return are_prizes_sorted(result);
+	}
+	
+	
 	
 	
 	 private boolean are_prizes_sorted(List<WebElement> result){
