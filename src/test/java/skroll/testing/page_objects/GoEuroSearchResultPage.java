@@ -17,19 +17,29 @@ public class GoEuroSearchResultPage extends WebPage{
 	@FindBy(css = "#results-train div.price-cell-content span.price-no span")
 	List<WebElement> trainResultCashValues;
 	
+	@FindBy(id = "train_tab")
+	WebElement train_tab;
+	
+	private final String trainResultSelectorString = "#results-train div.price-cell-content span.price-no span";
+	By trainResults = By.cssSelector(trainResultSelectorString);
+	
+	@FindBy(css = trainResultSelectorString)
+	List<WebElement> planeResultCashValues;
+	
+	@FindBy(id = "train_tab")
+	WebElement plane_tab;
+	
+	
 	
 	public GoEuroSearchResultPage(WebDriver driver) {
 		super(driver);
 	}
 	
 	public boolean is_train_prizes_sorted() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#results-train div.price-cell-content span.price-no span")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(trainResults));
         List<WebElement> result = trainResultCashValues;
         return are_prizes_sorted(result);
 	}
-	
-	
-	
 	
 	 private boolean are_prizes_sorted(List<WebElement> result){
 		 List<Float> floatList = new ArrayList<Float>();
